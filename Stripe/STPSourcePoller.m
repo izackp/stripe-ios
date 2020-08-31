@@ -118,8 +118,8 @@ static NSTimeInterval const MaxRetries = 5;
     }];
     self.dataTask = [self.apiClient retrieveSourceWithId:self.sourceID
                                             clientSecret:self.clientSecret
-                                      responseCompletion:^(STPSource *source, NSHTTPURLResponse *response, NSError *error) {
-                                          [self continueWithSource:source response:response error:error];
+                                      responseCompletion:^(id<STPAPIResponseDecodable>source, NSHTTPURLResponse *response, NSError *error) {
+                                          [self continueWithSource:(STPSource*)source response:response error:error];
                                           self.requestCount++;
                                           self.dataTask = nil;
                                           [application endBackgroundTask:bgTaskID];

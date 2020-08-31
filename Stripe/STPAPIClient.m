@@ -454,8 +454,8 @@ static NSString * const APIEndpointPaymentIntents = @"payment_intents";
     NSCAssert(identifier != nil, @"'identifier' is required to retrieve a source");
     NSCAssert(secret != nil, @"'secret' is required to retrieve a source");
     NSCAssert(completion != nil, @"'completion' is required to use the source that is retrieved");
-    [self retrieveSourceWithId:identifier clientSecret:secret responseCompletion:^(STPSource * object, __unused NSHTTPURLResponse *response, NSError *error) {
-        completion(object, error);
+    [self retrieveSourceWithId:identifier clientSecret:secret responseCompletion:^(id<STPAPIResponseDecodable> object, __unused NSHTTPURLResponse *response, NSError *error) {
+        completion((STPSource*)object, error);
     }];
 }
 
